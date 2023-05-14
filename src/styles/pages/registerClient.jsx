@@ -75,3 +75,48 @@ export const RegisterCLientContainer = styled.div`
 	}
 
 `;
+
+export const RegisterClientPopUp = styled.div`
+	height: auto;
+	width: 90%;
+	background-color: #232323;
+	border-radius: 10px;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	right: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	display: none;
+
+	h2 {
+		color: #eee;
+		font-weight: normal;
+		margin: 20px auto 0 auto;
+		text-align: center;
+	}
+
+	button {
+		height: 40px;
+		display: block;
+		background-color: #eee;
+		border-radius: 10px;
+		border: 1px solid #eee;
+		font-size: 15px;
+		color: #1a1a1a;
+		transition: .2s;
+		font-weight: bold;
+		width: 90%;
+		margin: 0 auto 20px auto;
+	}
+
+	button:hover {
+		background-color: transparent;
+		color: #eee;
+	}
+
+`;
