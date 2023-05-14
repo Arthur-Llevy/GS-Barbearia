@@ -9,6 +9,7 @@ export const HomePageContainer = styled.div`
 	gap: 40px;
 	align-items: center;
 	fex-wrap: wrap;
+	text-align: center;
 
 	p {
 		color: #eee;
@@ -18,14 +19,15 @@ export const HomePageContainer = styled.div`
 	}
 
 	button {
-	  width: 160px;
-	  height: 45px;
-	  border-radius: 10px;
-	  background-color: transparent;
-	  border: 1px solid #eee;
-	  color: #eee;
-	  font-size: 15px;
-	  transition: .2s;
+		width: 180px;
+		height: 45px;
+		border-radius: 10px;
+		background-color: transparent;
+		border: 1px solid #eee;
+		color: #eee;
+		font-size: 15px;
+		transition: .2s;
+		font-weight: bold;
 	}
 
 	button:hover {

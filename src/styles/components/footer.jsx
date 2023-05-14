@@ -10,4 +10,5 @@ export const FooterContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	color: #eee;
+	text-align: center;
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BarberLoginContainer = styled.div`
+export const ClientLoginContainer = styled.div`
 	height: auto;
 	width: 90%;
 	background-color: #232323;
