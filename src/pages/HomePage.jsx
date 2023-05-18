@@ -1,18 +1,28 @@
 import React from 'react';
 import { Menu, Footer } from '../components/Exports';
-import { HomePageContainer } from '../components/Exports';
+import { Container, HomePageContainer} from '../components/Exports';
+import { useNavigate } from 'react-router-dom';
 
 export function HomePage(){
+
+	let navigater = useNavigate();
+
+	function navigate(url){
+		navigater(url)
+	};
+
 	return(
 		<>
-			<Menu />
-			<HomePageContainer>
-				<p>Seja bem-vindo(a) a GS Barbearia!</p> 
-				<button><a href="loginBarbeiro">Entrar como barbeiro</a></button>
-				<button><a href="loginCliente">Entrar como cliente</a></button>
-				<button><a href="cadastrarCliente">Cadastrar cliente</a></button>
-			</HomePageContainer>
-			<Footer />
+			<Container>
+				<Menu />
+				<HomePageContainer>
+					<p>Seja bem-vindo(a) a GS Barbearia!</p> 
+					<button onClick={() => navigate('/loginBarbeiro')} >Entrar como barbeiro</button>
+					<button onClick={() => navigate('/loginCliente')} >Entrar como cliente</button>
+					<button onClick={() => navigate('/cadastrarCliente')} >Cadastrar cliente</button>
+				</HomePageContainer>
+				<Footer />
+			</Container>
 		</>
 	);
 };

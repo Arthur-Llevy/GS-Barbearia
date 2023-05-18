@@ -63,7 +63,7 @@ export function BarberLogin(){
 						className='img'
 						onClick={ changePasswordVisibility}/>}								
 				</div>
-				<button onClick={handleLogin}><a href="#">Entrar</a></button>
+				<button onClick={handleLogin}>Entrar</button>
 			</BarberLoginContainer>			
 			<Footer />
 		</>

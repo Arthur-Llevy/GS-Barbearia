@@ -2,8 +2,14 @@ import { Menu, Footer } from '../components/Exports';
 import { ClientLoginContainer } from '../styles/pages/clientLogin';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function ClientLogin(){
+	let navigater = useNavigate();
+
+	function navigate(url){
+		navigater(url)
+	};
 
 	let [passwordVisible, setPasswordVisible] = useState(false);	
 	let textInputPassword = useRef();
@@ -58,7 +64,7 @@ export function ClientLogin(){
 						className='img'
 						onClick={ changePasswordVisibility}/>}								
 				</div>
-				<button onClick={login}><a href="#">Entrar</a></button>
+				<button onClick={login}>Entrar</button>
 			</ClientLoginContainer>
 			<Footer />
 		</>

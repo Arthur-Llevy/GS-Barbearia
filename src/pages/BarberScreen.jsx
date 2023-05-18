@@ -1,10 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { Menu, Footer } from '../components/Exports';
-import { BarberScreenContainer } from '../components/Exports';
+import { BarberScreenContainer, Container } from '../components/Exports';
+import { useNavigate } from 'react-router-dom';
 
 export function BarberScreen(){
 
-	let welcomeText = useRef()
+	let navigater = useNavigate();
+	function navigate(url){
+		navigater(url);
+	};
+
+	let welcomeText = useRef();
 
 	useEffect(() => {
 		fetch('https://gs-barbearia-api.onrender.com/dadosBarbeiro', {
@@ -23,14 +29,16 @@ export function BarberScreen(){
 
 	return(
 		<>
-			<Menu />
-			<BarberScreenContainer>
-				<p ref={welcomeText}>Seja bem-vindo BARBEIRO!</p> 
-				<button><a href="cadastrarCliente">Cadastrar Cliente</a></button>
-				<button><a href="adicionarCorte">Adicionar Corte a um cliente</a></button>
-				<button><a href="procurarCliente">Procurar Cliente</a></button>
-			</BarberScreenContainer>
-			<Footer />
+			<Container>
+				<Menu />
+				<BarberScreenContainer>
+					<p ref={welcomeText}>Seja bem-vindo BARBEIRO!</p> 
+					<button onClick={() => navigate('/cadastrarCliente')} >Cadastrar Cliente</button>
+					<button onClick={() => navigate('/adicionarCorte')}>Adicionar Corte a um cliente</button>
+					<button onClick={() => navigate('/procurarCliente')}>Procurar Cliente</button>
+				</BarberScreenContainer>
+				<Footer />
+			</Container>
 		</>
 	);
 };
