@@ -10,7 +10,7 @@ export function HomePage(){
 				<p>Seja bem-vindo(a) a GS Barbearia!</p> 
 				<button><a href="loginBarbeiro">Entrar como barbeiro</a></button>
 				<button><a href="loginCliente">Entrar como cliente</a></button>
-				<button><a href="#">Cadastrar cliente</a></button>
+				<button><a href="cadastrarCliente">Cadastrar cliente</a></button>
 			</HomePageContainer>
 			<Footer />
 		</>

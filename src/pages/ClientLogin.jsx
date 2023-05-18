@@ -4,9 +4,32 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef } from 'react';
 
 export function ClientLogin(){
-	
-	let [passwordVisible, setPasswordVisible] = useState(false);
+
+	let [passwordVisible, setPasswordVisible] = useState(false);	
 	let textInputPassword = useRef();
+	let textInputEmail = useRef();
+
+	async function login(){			
+		fetch('https://gs-barbearia-api.onrender.com/login/cliente', {
+			method: 'POST',
+			body: JSON.stringify({
+				email: textInputEmail.current.value,
+				senha: textInputPassword.current.value
+			}),
+			headers: { 'Content-Type': 'application/json' }
+		}).
+			then(response => response.json()).
+			then(data => { 
+				if(data.token){
+					sessionStorage.setItem('token', data.token);		
+					window.location.href = '/cliente';
+				}else {
+					alert(data.message);
+				}
+			}).
+			catch(erro => alert('Falha ao fazer login, tente novamente mais tarde.'));
+	};
+	
 
 	function changePasswordVisibility(){
 		if(passwordVisible){
@@ -24,7 +47,7 @@ export function ClientLogin(){
 			<ClientLoginContainer>
 				<h2>Cliente</h2>
 				<label>E-mail</label>
-				<input type="text" />
+				<input ref={textInputEmail} type="text" />
 				<label>Senha</label>
 				<div className="inputPass">
 					<input ref={textInputPassword} type="password" />	
@@ -35,7 +58,7 @@ export function ClientLogin(){
 						className='img'
 						onClick={ changePasswordVisibility}/>}								
 				</div>
-				<button>Entrar</button>
+				<button onClick={login}><a href="#">Entrar</a></button>
 			</ClientLoginContainer>
 			<Footer />
 		</>

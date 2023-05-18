@@ -9,6 +9,7 @@ export const BarberLoginContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+	transition: .2s;
 
 	h2 {
 	  color: #eee;
@@ -75,3 +76,4 @@ export const BarberLoginContainer = styled.div`
 	}
 
 `;
+

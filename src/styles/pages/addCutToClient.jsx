@@ -9,6 +9,7 @@ export const AddCutToClientContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+	transition: .2s;
 
 	h2 {
 	  color: #eee;
@@ -75,6 +76,7 @@ export const AddCutToClientpPopUp = styled.div`
 	transform: translate(-50%, -50%);
 	opacity: 0;
 	display: none;
+	transition: .2s;
 
 	h2 {
 		color: #eee;
