@@ -37,7 +37,7 @@ export const ClientNotification = styled.div`
 
 `;
 
-export const ClientNtf = styled.div`
+export const ClientNotificationContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;

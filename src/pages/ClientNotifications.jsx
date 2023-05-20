@@ -1,4 +1,4 @@
-import { ClientMenu, Footer, Container, ClientNotification, ClientNtf } from '../components/Exports';
+import { ClientMenu, Footer, Container, ClientNotification, ClientNotificationContainer } from '../components/Exports';
 import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 
@@ -15,10 +15,10 @@ export function ClientNotifications(){
 					'token': localStorage.getItem('token')
 				},
 				body: JSON.stringify({id: id})
-			}).
-				then(response => response.json()).
-				then(data => alert(data.message)).
-				catch(() => alert('Falha ao excluir a notificação. Tente novamente mais tarde.'))
+			})
+				.then(response => response.json())
+				.then(data => alert(data.message))
+				.catch(() => alert('Falha ao excluir a notificação. Tente novamente mais tarde.'))
 		}
 	};
 
@@ -32,18 +32,17 @@ export function ClientNotifications(){
 	  })
 	    .then(response => response.json())
 	    .then(data => {
+			if(data){	    	
 
-		if(data){	    	
-
-	      const notificationNames = data.map(item => {
-	      	return {
-	      		name: item.nome,
-	      		id: item.idCliente,
-	      		requestConfirm: item.solicitacaoAceita
-	      	}
-	      });
-	      setNotifications(notificationNames);	      
-  		}
+		      const notificationNames = data.map(item => {
+		      	return {
+		      		name: item.nome,
+		      		id: item.idCliente,
+		      		requestConfirm: item.solicitacaoAceita
+		      	}
+		      });
+		      setNotifications(notificationNames);	      
+	  		};
 	    })
   		.catch(() => alert('Ocorreu um erro ao carregar as notificações, tente novamente mais tarde.'));
 }, []);
@@ -52,7 +51,7 @@ export function ClientNotifications(){
 		<>
 			<Container>
 				<ClientMenu />
-				<ClientNtf>					
+				<ClientNotificationContainer>					
 				{
 					notifications.map(item => (
 						<ClientNotification key={item}>
@@ -63,7 +62,7 @@ export function ClientNotifications(){
 						)
 					)
 				}
-				</ClientNtf>
+				</ClientNotificationContainer>
 				<Footer />
 			</Container>
 		</>

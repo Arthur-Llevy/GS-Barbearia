@@ -15,10 +15,12 @@ export function ClientMenu(){
 
 	function togglePopUpVisibility(){
 		if(!visible){
+			popUp.current.style.transition = '.2s;';
 			popUp.current.style.display = 'flex';
 			popUp.current.style.opacity = '1';
 			visible = true;
 		}else {
+			popUp.current.style.transition = '.2s;';
 			popUp.current.style.display = 'none';
 			popUp.current.style.opacity = '0';
 			visible = false;

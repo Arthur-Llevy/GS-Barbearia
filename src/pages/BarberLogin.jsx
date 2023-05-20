@@ -1,5 +1,6 @@
-import { Menu, Footer } from '../components/Exports';
+import { Menu, Footer, Container } from '../components/Exports';
 import { BarberLoginContainer } from '../styles/pages/barberLogin';
+
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef } from 'react';
 
@@ -48,24 +49,26 @@ export function BarberLogin(){
 
 	return(
 		<>
-			<Menu />
-			<BarberLoginContainer ref={container}>
-				<h2>Barbeiro</h2>
-				<label>E-mail</label>
-				<input ref={textInputEmail} type="text" />
-				<label>Senha</label>
-				<div className="inputPass">
-					<input ref={textInputPassword} type="password" />	
-					{!passwordVisible && <AiOutlineEye
-						className='img'
-						onClick={ changePasswordVisibility}/>}
-					{passwordVisible && <AiOutlineEyeInvisible 
-						className='img'
-						onClick={ changePasswordVisibility}/>}								
-				</div>
-				<button onClick={handleLogin}>Entrar</button>
-			</BarberLoginContainer>			
-			<Footer />
+			<Container>
+				<Menu />
+				<BarberLoginContainer ref={container}>
+					<h2>Barbeiro</h2>
+					<label>E-mail</label>
+					<input ref={textInputEmail} type="text" />
+					<label>Senha</label>
+					<div className="inputPass">
+						<input ref={textInputPassword} type="password" />	
+						{!passwordVisible && <AiOutlineEye
+							className='img'
+							onClick={ changePasswordVisibility}/>}
+						{passwordVisible && <AiOutlineEyeInvisible 
+							className='img'
+							onClick={ changePasswordVisibility}/>}								
+					</div>
+					<button onClick={handleLogin}>Entrar</button>
+				</BarberLoginContainer>			
+				<Footer />
+			</Container>
 		</>
 	);
 }

@@ -1,7 +1,6 @@
-import { Menu, Footer, ClientMenu } from '../components/Exports';
+import { Footer, ClientMenu, ClientScreenContainer, Container } from '../components/Exports';
 import { FaStar } from 'react-icons/fa';
-import { ClientScreenContainer,ClientScreenPopUp } from '../components/Exports';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function ClientScreen(){	
 
@@ -47,22 +46,24 @@ export function ClientScreen(){
 	};
 
 	return(
-		<>		
-			<ClientMenu />
-			<ClientScreenContainer>
-				<h2>Cliente</h2>
-				<h3 ref={textDatasClient}>CLIENTE, você possui X cortes. Complete 6 para ganhar um de graça!</h3>
-				<div className="stars">
-					<FaStar className="star-icon" />
-					<FaStar className="star-icon" />
-					<FaStar className="star-icon" />
-					<FaStar className="star-icon" />
-					<FaStar className="star-icon" />
-					<FaStar className="star-icon" />
-				</div>
-				<button onClick={addCut} >Solicitar Corte</button>				
-				<Footer className="star-icon" />
-			</ClientScreenContainer>
+		<>
+			<Container>		
+				<ClientMenu />
+				<ClientScreenContainer>
+					<h2>Cliente</h2>
+					<h3 ref={textDatasClient}>CLIENTE, você possui X cortes. Complete 6 para ganhar um de graça!</h3>
+					<div className="stars">
+						<FaStar className="star-icon" />
+						<FaStar className="star-icon" />
+						<FaStar className="star-icon" />
+						<FaStar className="star-icon" />
+						<FaStar className="star-icon" />
+						<FaStar className="star-icon" />
+					</div>
+					<button onClick={addCut} >Solicitar Corte</button>				
+					<Footer className="star-icon" />
+				</ClientScreenContainer>
+			</Container>
 		</>
 	);	
 

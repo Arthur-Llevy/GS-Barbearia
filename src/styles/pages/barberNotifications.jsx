@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const B = styled.div`
+export const BarberNotificationsContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -11,7 +11,7 @@ export const B = styled.div`
 	overflow: scroll;
 `;
 
-export const Bnot = styled.div`
+export const BarberNotification = styled.div`
 	width: 90%;
 	background-color: #232323;
 	display: grid;

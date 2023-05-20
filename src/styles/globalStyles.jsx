@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, styled } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 	
@@ -15,4 +15,11 @@ export const GlobalStyle = createGlobalStyle`
  	 	background-color: #1a1a1a;
 	}
 
+`;
+
+export const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background-color: #1a1a1a;  
 `;

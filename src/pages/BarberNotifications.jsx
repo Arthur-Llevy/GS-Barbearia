@@ -1,5 +1,5 @@
-import { BarberMenu, Footer, Container} from '../components/Exports';  
-import { B, Bnot  } from '../styles/pages/barberNotifications'
+import { BarberMenu, Footer, Container } from '../components/Exports';  
+import { BarberNotificationsContainer, BarberNotification  } from '../styles/pages/barberNotifications'
 import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 
@@ -70,20 +70,20 @@ export function BarberNotifications(){
 		<>
 			<Container>
 				<BarberMenu />
-				<B>
+				<BarberNotificationsContainer>
 				{
 					notifications.map(item => (
-						<Bnot key={item}>
+						<BarberNotification key={item}>
 							<p onClick={() => handleConfirmCut(item.id)}>Solicitação de corte do cliente {item.name}</p>
 							{item.requestConfirm ? <BsCheck className="checked"/> : <BsCheck className="notChecked"/>}
 							<BsTrash3Fill onClick={() => handleDeleteNotification(item.id)} className="trash-icon"/>
-						</Bnot>
+						</BarberNotification>
 						)
 					)
 				}
-				</B>
-			</Container>
+				</BarberNotificationsContainer>
 			<Footer />
+			</Container>
 		</>
 	);
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { BarberMenu, Footer } from '../components/Exports';
-import { BarberScreenContainer, Container } from '../components/Exports';
+import { BarberMenu, Footer, BarberScreenContainer, Container } from '../components/Exports';
 import { useNavigate } from 'react-router-dom';
 
 export function BarberScreen(){

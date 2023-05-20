@@ -3,10 +3,12 @@ import styled from 'styled-components';
 export const ContainerMenu = styled.div`
 	width: 100%;
 	background-color: #171717;
-	height: 65px;
+	height: 10vh;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;	
+	transition: .2s;
+
 	
 	img {
 	  width: 10vw;

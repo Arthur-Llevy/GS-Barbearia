@@ -1,5 +1,4 @@
-import { Menu, Footer } from '../components/Exports';
-import { RegisterCLientContainer, Container } from '../styles/pages/registerClient';
+import { Menu, Footer, RegisterCLientContainer, Container } from '../components/Exports';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef, useEffect } from 'react';
 
@@ -64,9 +63,8 @@ export function RegisterClient(){
 
 	return(
 		<>
-
+			<Menu />
 			<Container>
-				<Menu />
 				<RegisterCLientContainer ref={registerCLientContainer}>
 					<h2>Cadastrar cliente</h2>
 					<label>Nome</label>
@@ -94,8 +92,9 @@ export function RegisterClient(){
 							onClick={changeConfirmPasswordVisibility}/>}								
 					</div>
 					<button onClick={regiterNewClient}>Cadastrar</button>
-				</RegisterCLientContainer>											
+				</RegisterCLientContainer>	
 			</Container>
+			<Footer />										
 		</>
 	);
 };

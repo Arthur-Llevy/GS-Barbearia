@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
-	height: 100vh;
+	height: 80vh;
 	width: 100%;
 	background-color: #1a1a1a;
 	display: flex;

@@ -1,5 +1,5 @@
 import { Menu, Footer } from '../components/Exports';
-import { AddCutToClientContainer } from '../components/Exports';
+import { AddCutToClientContainer, Container } from '../components/Exports';
 import { useRef } from 'react';
 
 export function AddCutToClient(){	
@@ -43,14 +43,16 @@ export function AddCutToClient(){
 
 	return(
 		<>
-			<Menu />
-			<AddCutToClientContainer ref={container}>
-				<h2>Adicionar Corte</h2>
-				<label>Id do cliente</label>
-				<input ref={textInputId} type="text" />				
-				<button onClick={confirm}>Adicionar Corte</button>
-			</AddCutToClientContainer>			
-			<Footer />
+			<Container>
+				<Menu />
+				<AddCutToClientContainer ref={container}>
+					<h2>Adicionar Corte</h2>
+					<label>Id do cliente</label>
+					<input ref={textInputId} type="text" />				
+					<button onClick={confirm}>Adicionar Corte</button>
+				</AddCutToClientContainer>			
+				<Footer />
+			</Container>
 		</>
 	);
 };

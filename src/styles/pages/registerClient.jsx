@@ -1,22 +1,17 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-	display: flex;
-	flex-direction: column;	
-	height: 100%;
-`;
-
 export const RegisterCLientContainer = styled.div`
-	height: auto;
+	height: 80vh;
 	width: 90%;
 	background-color: #232323;
 	border-radius: 10px;
 	margin: 20px auto;
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	gap: 30px;
 	transition: .2s;
-	filter: blur(0px);
+	filter: blur(0px);	
+	overflow: scroll;
+	padding: 10px 0;
 
 	h2 {
 	  color: #eee;
