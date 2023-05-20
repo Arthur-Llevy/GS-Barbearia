@@ -7,13 +7,15 @@ import {
 	BarberScreen,
 	AddCutToClient,
 	FindClient,
-	ClientScreen
+	ClientScreen,
+	BarberNotifications,
+	ClientNotifications
 	 } from './Exports';
 import React from 'react';
 
 export function Rts(){
 
-	const token = sessionStorage.getItem('token');	
+	const token = localStorage.getItem('token');	
 
 	return(
 		<BrowserRouter>
@@ -26,6 +28,8 @@ export function Rts(){
 				<Route path="adicionarCorte" element={<AddCutToClient />} />
 				<Route path="procurarCliente" element={<FindClient />} />
 				<Route path="cliente" element={token !== null ? <ClientScreen /> : <Navigate to="/loginCliente" />}/>
+				<Route path="/barbeiro/notificacoes" element={token !== null ? <BarberNotifications /> : <Navigate to="/loginBarbeiro" />} />
+				<Route path="/cliente/notificacoes" element={token !== null ? <ClientNotifications /> : <Navigate to="/loginCliente" />} />
 			</Routes>
 		</BrowserRouter>
 	);	

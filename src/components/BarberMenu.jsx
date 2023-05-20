@@ -4,15 +4,16 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
-export function Menu(){
+export function BarberMenu(){
 
 	let popUp = useRef();
 	let visible = false;
+	let navigate = useNavigate();
 
-	function toggle(){
+	function togglePopUpVisibility(){
 		if(!visible){
-			popUp.current.style.opacity = '1';
 			popUp.current.style.display = 'flex';
+			popUp.current.style.opacity = '1';
 			visible = true;
 		}else {
 			popUp.current.style.display = 'none';
@@ -31,9 +32,9 @@ export function Menu(){
 			<ContainerMenu>
 				<img src={logoMenu} alt="Ícone do menu"/>
 				<h1>Barbearia</h1>				
-				 <img src={logoMenu} alt="Ícone do menu"/>				
+				<HiOutlineMenuAlt3 onClick={togglePopUpVisibility} />			
 				<PopUp ref={popUp}>
-					<p>Notificações</p>					
+					<p onClick={() => navigate('/barbeiro/notificacoes')}>Notificações</p>		
 					<p onClick={logout} >Sair</p>
 				</PopUp>
 			</ContainerMenu>

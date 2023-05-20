@@ -10,6 +10,10 @@ export * from '../pages/BarberScreen';
 export * from '../pages/AddCutToClient';
 export * from '../pages/FindClient';
 export * from '../pages/ClientScreen';
+export * from '../pages/BarberNotifications';
+export * from '../pages/ClientNotifications';
+export * from '../components/ClientMenu';
+export * from '../components/BarberMenu';
 
 //Exports style sheets
 export * from '../styles/components/menu';
@@ -22,3 +26,6 @@ export * from '../styles/pages/barberScreen';
 export * from '../styles/pages/addCutToClient';
 export * from '../styles/pages/findCLient';
 export * from '../styles/pages/clientScreen';
+export * from '../pages/BarberNotifications';
+export * from '../styles/pages/clientNotifications';
+

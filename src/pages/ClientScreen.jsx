@@ -1,11 +1,11 @@
-import { Menu, Footer } from '../components/Exports';
+import { Menu, Footer, ClientMenu } from '../components/Exports';
 import { FaStar } from 'react-icons/fa';
 import { ClientScreenContainer,ClientScreenPopUp } from '../components/Exports';
 import { useEffect, useState, useRef } from 'react';
 
 export function ClientScreen(){	
 
-	const token = sessionStorage.getItem('token');	
+	const token = localStorage.getItem('token');	
 	let textDatasClient = useRef();
 	
 	useEffect(() => {
@@ -30,12 +30,12 @@ export function ClientScreen(){
 	}, []);
 
 	async function addCut(){
-		if(window.confirm('Tem certeza que deseja adicionar um corte?')){
-			fetch('https://gs-barbearia-api.onrender.com/cliente/adicionarCorte', {
-				method: 'PATCH',
+		if(window.confirm('Tem certeza que deseja solicitar um corte?')){
+			fetch('https://gs-barbearia-api.onrender.com/cliente/solicitarCorte', {
+				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'token': sessionStorage.getItem('token')
+					'token': localStorage.getItem('token')
 				}
 			}).
 				then(response => response.json()).
@@ -48,7 +48,7 @@ export function ClientScreen(){
 
 	return(
 		<>		
-			<Menu />
+			<ClientMenu />
 			<ClientScreenContainer>
 				<h2>Cliente</h2>
 				<h3 ref={textDatasClient}>CLIENTE, você possui X cortes. Complete 6 para ganhar um de graça!</h3>
@@ -60,7 +60,7 @@ export function ClientScreen(){
 					<FaStar className="star-icon" />
 					<FaStar className="star-icon" />
 				</div>
-				<button onClick={addCut} >Adicionar Corte</button>				
+				<button onClick={addCut} >Solicitar Corte</button>				
 				<Footer className="star-icon" />
 			</ClientScreenContainer>
 		</>

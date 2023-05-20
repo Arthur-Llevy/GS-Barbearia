@@ -27,7 +27,7 @@ export function ClientLogin(){
 			then(response => response.json()).
 			then(data => { 
 				if(data.token){
-					sessionStorage.setItem('token', data.token);		
+					localStorage.setItem('token', data.token);		
 					window.location.href = '/cliente';
 				}else {
 					alert(data.message);

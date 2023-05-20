@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Menu, Footer } from '../components/Exports';
+import { BarberMenu, Footer } from '../components/Exports';
 import { BarberScreenContainer, Container } from '../components/Exports';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export function BarberScreen(){
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'token': sessionStorage.getItem('token')
+				'token': localStorage.getItem('token')
 			}
 		}).
 			then(response => response.json()).
@@ -30,7 +30,7 @@ export function BarberScreen(){
 	return(
 		<>
 			<Container>
-				<Menu />
+				<BarberMenu />
 				<BarberScreenContainer>
 					<p ref={welcomeText}>Seja bem-vindo BARBEIRO!</p> 
 					<button onClick={() => navigate('/cadastrarCliente')} >Cadastrar Cliente</button>

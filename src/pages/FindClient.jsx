@@ -11,7 +11,7 @@ export function FindClient(){
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'token': sessionStorage.getItem('token')
+				'token': localStorage.getItem('token')
 			},
 			body: JSON.stringify({id: id})
 		}).

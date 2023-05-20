@@ -25,7 +25,7 @@ export function BarberLogin(){
 			then(response => response.json()).
 			then(data => {
 				if('token' in data){
-					sessionStorage.setItem('token', data.token);            
+					localStorage.setItem('token', data.token);            
 					window.location.href = '/barbeiro';
 				}else {
 					alert(data.message);
