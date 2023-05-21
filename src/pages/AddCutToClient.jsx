@@ -4,6 +4,8 @@ import { useRef } from 'react';
 
 export function AddCutToClient(){	
 
+	document.title = 'GSB | Adicionar corte';
+
 	let container = useRef();
 	let textInputId = useRef();	
 
@@ -13,13 +15,14 @@ export function AddCutToClient(){
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
-			  'token': sessionStorage.getItem('token')
+			  'token': localStorage.getItem('token')
 			},
 
 			body: JSON.stringify({id: textInputId.current.value})
 		}).
 			then(response => response.json()).
-			then(data => {
+			then(data => {				
+				console.log(data)
 				if(window.confirm(`Tem certeza que deseja adicionar um corte ao cliente ${data.name} ?`)){
 					handleAddCut()
 				}

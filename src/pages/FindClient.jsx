@@ -2,7 +2,7 @@ import { Menu, Footer, FindClientContainer, Container } from '../components/Expo
 import { useState } from 'react';
 
 export function FindClient(){	
-
+	document.title = 'GSB | Procurar cliente';
 	let [id, setId] = useState('');
 
 	async function handleFindClient(){

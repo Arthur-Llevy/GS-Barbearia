@@ -3,6 +3,7 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef, useEffect } from 'react';
 
 export function RegisterClient(){
+	document.title = 'GSB | Cadastrar cliente';
 
 	let inputName = useRef();
 	let inputEmail = useRef();	

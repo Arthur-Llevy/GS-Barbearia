@@ -3,7 +3,7 @@ import { Menu, Footer, Container, HomePageContainer} from '../components/Exports
 import { useNavigate } from 'react-router-dom';
 
 export function HomePage(){
-
+	document.title = 'GSB | Página inicial';
 	let navigater = useNavigate();
 
 	function navigate(url){

@@ -3,6 +3,7 @@ import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 
 export function ClientNotifications(){
+	document.title = 'GSB | Notificações';
 
 	let [notifications, setNotifications] = useState([]);
 

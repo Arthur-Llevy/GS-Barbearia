@@ -5,6 +5,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function ClientLogin(){
+	document.title = 'GSB | Login';
 	let navigater = useNavigate();
 
 	function navigate(url){

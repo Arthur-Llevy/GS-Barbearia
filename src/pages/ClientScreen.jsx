@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
 export function ClientScreen(){	
+	document.title = 'GSB | Dashboard';
 
 	const token = localStorage.getItem('token');	
 	let [amountCuts, setAmountCuts] = useState('');

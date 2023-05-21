@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 export function BarberScreen(){
 
+	document.title = 'GSB | Dashboard';
+
 	let navigater = useNavigate();
 	function navigate(url){
 		navigater(url);

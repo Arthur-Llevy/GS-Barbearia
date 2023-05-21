@@ -6,6 +6,8 @@ import { useState, useRef } from 'react';
 
 export function BarberLogin(){
 
+	document.title = 'GSB | Login';
+
 	let [passwordVisible, setPasswordVisible] = useState(false);
 	let textInputPassword = useRef();
 	let textInputEmail = useRef();

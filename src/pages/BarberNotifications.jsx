@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 export function BarberNotifications(){
 
+	document.title = 'GSB | Notificações';
 	let [notifications, setNotifications] = useState([]);
 
 	async function handleConfirmCut(id){
