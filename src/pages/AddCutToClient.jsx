@@ -21,8 +21,7 @@ export function AddCutToClient(){
 			body: JSON.stringify({id: textInputId.current.value})
 		}).
 			then(response => response.json()).
-			then(data => {				
-				console.log(data)
+			then(data => {								
 				if(window.confirm(`Tem certeza que deseja adicionar um corte ao cliente ${data.name} ?`)){
 					handleAddCut()
 				}
