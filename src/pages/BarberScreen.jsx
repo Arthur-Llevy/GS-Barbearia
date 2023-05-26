@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function BarberScreen(){
 
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Dashboard';
 
 	let navigater = useNavigate();
@@ -14,7 +15,7 @@ export function BarberScreen(){
 	let welcomeText = useRef();
 
 	useEffect(() => {
-		fetch('https://gs-barbearia-api.onrender.com/dadosBarbeiro', {
+		fetch(`${APIURL}/dadosBarbeiro`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -33,7 +34,7 @@ export function BarberScreen(){
 			<Container>
 				<BarberMenu />
 				<BarberScreenContainer>
-					<p ref={welcomeText}>Seja bem-vindo BARBEIRO!</p> 
+					<p ref={welcomeText}>Carregando...</p> 
 					<button onClick={() => navigate('/cadastrarCliente')} >Cadastrar Cliente</button>
 					<button onClick={() => navigate('/adicionarCorte')}>Adicionar Corte a um cliente</button>
 					<button onClick={() => navigate('/procurarCliente')}>Procurar Cliente</button>

@@ -4,6 +4,7 @@ import { useRef } from 'react';
 
 export function AddCutToClient(){	
 
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Adicionar corte';
 
 	let container = useRef();
@@ -11,7 +12,7 @@ export function AddCutToClient(){
 
 	async function confirm(){
 
-		fetch('https://gs-barbearia-api.onrender.com/barbeiro/procurarCliente', {
+		fetch(`${APIURL}/barbeiro/procurarCliente`, {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ export function AddCutToClient(){
 	}
 
 	async function handleAddCut(){
-		fetch('https://gs-barbearia-api.onrender.com/barbeiro/adicionarCorte', {
+		fetch(`${APIURL}/barbeiro/adicionarCorte`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',

@@ -2,11 +2,13 @@ import { Menu, Footer, FindClientContainer, Container } from '../components/Expo
 import { useState } from 'react';
 
 export function FindClient(){	
+
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Procurar cliente';
 	let [id, setId] = useState('');
 
 	async function handleFindClient(){
-		fetch('https://gs-barbearia-api.onrender.com/barbeiro/procurarCliente', {
+		fetch(`${APIURL}/barbeiro/procurarCliente`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

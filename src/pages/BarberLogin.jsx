@@ -1,11 +1,16 @@
 import { Menu, Footer, Container } from '../components/Exports';
 import { BarberLoginContainer } from '../styles/pages/barberLogin';
+import { firebaseVariables } from '../services/FirebaseConfig';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { FcGoogle } from 'react-icons/fc';
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef } from 'react';
 
 export function BarberLogin(){
 
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Login';
 
 	let [passwordVisible, setPasswordVisible] = useState(false);
@@ -14,7 +19,7 @@ export function BarberLogin(){
 	let container = useRef();
 
 	async function handleLogin(){
-		fetch('https://gs-barbearia-api.onrender.com/loginBarbeiro', {
+		fetch(`${APIURL}/loginBarbeiro`, {
 			method: 'POST',
 			body: JSON.stringify({
 				email: textInputEmail.current.value,
@@ -49,6 +54,31 @@ export function BarberLogin(){
 		};
 	};
 
+	async function loginWithGoogle(){		
+		signInWithPopup(firebaseVariables.auth, firebaseVariables.provider)
+		      .then((result) => {		      	
+				fetch(`${APIURL}/googleLogin/barbeiro`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({					
+						email: result._tokenResponse.email
+					})
+				}).then(response => response.json())
+					.then(data => {						
+						if(data.token){
+							localStorage.setItem('token', data.token);		
+							window.location.href = '/barbeiro';
+						}else {
+							alert(data.message);
+						}
+					}).
+					catch(() => alert('Ocorreu um erro ao tentar entrar com uma conta do Google. Tente novamente mais tarde.'))
+		}).catch(() => {
+		        alert('Falha ao fazer login com uma conta Google. Tente novamente mais tarde.');
+		}); 				
+
+	};
+
 	return(
 		<>
 			<Container>
@@ -68,6 +98,11 @@ export function BarberLogin(){
 							onClick={ changePasswordVisibility}/>}								
 					</div>
 					<button onClick={handleLogin}>Entrar</button>
+					<p className="or">Ou</p>
+					<button onClick={loginWithGoogle}>
+						<FcGoogle />
+						Entrar com o google
+					</button>
 				</BarberLoginContainer>			
 				<Footer />
 			</Container>

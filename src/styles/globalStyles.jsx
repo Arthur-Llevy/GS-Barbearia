@@ -20,6 +20,8 @@ export const GlobalStyle = createGlobalStyle`
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: auto;
+	height: 80vh;
+	overflow: scroll;
 	background-color: #1a1a1a;  
+
 `;

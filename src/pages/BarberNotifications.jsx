@@ -2,16 +2,18 @@ import { BarberMenu, Footer, Container } from '../components/Exports';
 import { BarberNotificationsContainer, BarberNotification  } from '../styles/pages/barberNotifications'
 import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 export function BarberNotifications(){
 
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Notificações';
 	let [notifications, setNotifications] = useState([]);
 
 	async function handleConfirmCut(id){
 
 		if(window.confirm('Tem certeza que deseja confirmar o corte do cliente?')){
-			fetch('https://gs-barbearia-api.onrender.com/barbeiro/confirmarSolicitacao', {
+			fetch(`${APIURL}/barbeiro/confirmarSolicitacao`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json',
@@ -28,7 +30,7 @@ export function BarberNotifications(){
 
 	async function handleDeleteNotification(id){
 		if(window.confirm('Tem certeza que deseja excluir esta notificação?')){
-			fetch('https://gs-barbearia-api.onrender.com/barbeiro/excluirNotificacao', {
+			fetch(`${APIURL}/barbeiro/excluirNotificacao`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ export function BarberNotifications(){
 	};
 
 	useEffect(() => {
-	  fetch('https://gs-barbearia-api.onrender.com/barbeiro/notificacoes', {
+	  fetch(`${APIURL}/barbeiro/notificacoes`, {
 	    method: 'GET',
 	    headers: {
 	      'Content-Type': 'application/json',
@@ -57,7 +59,8 @@ export function BarberNotifications(){
 	      	return {
 	      		name: item.nome,
 	      		id: item.idCliente,
-	      		requestConfirm: item.solicitacaoAceita
+	      		requestConfirm: item.solicitacaoAceita,
+	      		time: ` (${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`
 	      	}
 	      });
 
@@ -71,11 +74,20 @@ export function BarberNotifications(){
 		<>
 			<Container>
 				<BarberMenu />
-				<BarberNotificationsContainer>
-				{
+				<BarberNotificationsContainer>				
+				{notifications.length === 0 ? 
+					(
+						<p
+							style={{
+								color: '#eee',
+								fontWeight: 'bold',
+								fontSize: '20px'
+							}}
+						>Carregando notificações...</p>
+					) :
 					notifications.map(item => (
 						<BarberNotification key={item}>
-							<p onClick={() => handleConfirmCut(item.id)}>Solicitação de corte do cliente {item.name}</p>
+							<p onClick={() => handleConfirmCut(item.id)}>Solicitação de corte do cliente {item.name} {item.time}</p>
 							{item.requestConfirm ? <BsCheck className="checked"/> : <BsCheck className="notChecked"/>}
 							<BsTrash3Fill onClick={() => handleDeleteNotification(item.id)} className="trash-icon"/>
 						</BarberNotification>

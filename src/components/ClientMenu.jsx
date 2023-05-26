@@ -1,47 +1,47 @@
 import logoMenu from '../images/logo_menu_icon.svg';
-import { ContainerMenu, PopUp } from './Exports';
+import { ContainerMenu } from './Exports';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
+import { BsBell } from 'react-icons/bs';
+import { RxExit } from 'react-icons/rx';
 
 export function ClientMenu(){
 
-	let popUp = useRef();
 	let visible = false;
 	let navigater = useNavigate();
+
 	function navigate(url){
 		navigater(url)
-	}
-
-	function togglePopUpVisibility(){
-		if(!visible){
-			popUp.current.style.transition = '.2s;';
-			popUp.current.style.display = 'flex';
-			popUp.current.style.opacity = '1';
-			visible = true;
-		}else {
-			popUp.current.style.transition = '.2s;';
-			popUp.current.style.display = 'none';
-			popUp.current.style.opacity = '0';
-			visible = false;
-		};
 	};
 
 	function logout(){
 		localStorage.removeItem('token');
 		window.location.href = '/';
-	}
+	};
 
 	return(
 		<>
 			<ContainerMenu>
 				<img src={logoMenu} alt="Ícone do menu"/>
-				<h1>Barbearia</h1>				
-				<HiOutlineMenuAlt3 onClick={togglePopUpVisibility} />			
-				<PopUp ref={popUp}>
-					<p onClick={() => navigate('/cliente/notificacoes')}>Notificações</p>		
-					<p onClick={logout} >Sair</p>
-				</PopUp>
+				<h1>Barbearia</h1>		
+				<div 
+					style={{
+						width: '70px',
+						display: 'flex',
+						justifyContent: 'space-between'
+					}}
+					className="iconsMenu"
+				>						
+					<BsBell
+						style={{width: '25px', cursor: 'pointer'}}
+						onClick={() => navigate('/cliente/notificacoes')}
+					/>
+					<RxExit 
+						style={{width: '25px', cursor: 'pointer'}}
+						onClick={logout}
+					/>
+				</div>
 			</ContainerMenu>
 		</>
 	);

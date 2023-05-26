@@ -1,8 +1,35 @@
 import { Menu, Footer, RegisterCLientContainer, Container } from '../components/Exports';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef, useEffect } from 'react';
+import { firebaseVariables } from '../services/FirebaseConfig';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { FcGoogle } from 'react-icons/fc';
 
 export function RegisterClient(){
+
+	const APIURL = process.env.REACT_APP_API_URL;
+
+	async function regiterClientWithGoogle(){		
+		let datas;
+		signInWithPopup(firebaseVariables.auth, firebaseVariables.provider)
+		      .then((result) => {		      	
+				fetch(`${APIURL}/cadastrarClienteGoogle/cliente`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					name: result._tokenResponse.fullName,
+					email: result._tokenResponse.email
+				})
+			}).then(response => response.json())
+				.then(data => alert(data.message)).
+				catch(() => alert('Ocorreu um erro ao tentar entrar com uma conta do Google. Tente novamente mais tarde.'))
+		}).catch(() => {
+		        alert('Falha ao fazer login com uma conta Google. Tente novamente mais tarde.');
+		}); 				
+	
+	};
+
 	document.title = 'GSB | Cadastrar cliente';
 
 	let inputName = useRef();
@@ -18,7 +45,7 @@ export function RegisterClient(){
 	async function regiterNewClient(){
 		
 		if(textInputPassword.current.value === textInputConfirmPassword.current.value){
-			fetch('https://gs-barbearia-api.onrender.com/cadastrarCliente', {
+			fetch(`${APIURL}/cadastrarCliente`, {
 				method: 'POST',
 				body: JSON.stringify({
 					nome: inputName.current.value,
@@ -93,6 +120,11 @@ export function RegisterClient(){
 							onClick={changeConfirmPasswordVisibility}/>}								
 					</div>
 					<button onClick={regiterNewClient}>Cadastrar</button>
+					<p className="or">Ou</p>
+					<button onClick={regiterClientWithGoogle}>
+						<FcGoogle />
+						Entrar com o google
+					</button>
 				</RegisterCLientContainer>	
 			</Container>
 			<Footer />										

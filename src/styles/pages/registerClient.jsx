@@ -55,6 +55,28 @@ export const RegisterCLientContainer = styled.div`
 		margin: 0 auto 20px auto;
 	}
 
+	& button:last-child {
+		height: 40px;
+		display: flex;
+		background-color: #eee;
+		border-radius: 10px;
+		border: 1px solid #eee;
+		font-size: 15px;
+		color: #1a1a1a;
+		transition: .2s;
+		font-weight: bold;
+		width: 90%;
+		margin: 0 auto 20px auto;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+
+	& button:last-child > svg {
+		width: 25px;
+		height: 25px;
+	}
+
 	button:hover {
 		background-color: transparent;
 		color: #eee;
@@ -77,5 +99,10 @@ export const RegisterCLientContainer = styled.div`
 		cursor: pointer;
 	}
 
+	& .or {
+  		color: #eee;
+  		text-align: center;
+ 	 	font-weight: bold;
+	}
 `;
 

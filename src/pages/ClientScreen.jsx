@@ -3,6 +3,8 @@ import { FaStar } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
 export function ClientScreen(){	
+	
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Dashboard';
 
 	const token = localStorage.getItem('token');	
@@ -13,7 +15,7 @@ export function ClientScreen(){
 	
 	useEffect(() => {
 
-		fetch('https://gs-barbearia-api.onrender.com/dadosCliente', {
+		fetch(`${APIURL}/dadosCliente`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export function ClientScreen(){
 
 	async function addCut(){		
 		if(window.confirm('Tem certeza que deseja solicitar um corte?')){
-			fetch('https://gs-barbearia-api.onrender.com/cliente/solicitarCorte', {
+			fetch(`${APIURL}/cliente/solicitarCorte`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -81,7 +83,7 @@ export function ClientScreen(){
 				<ClientMenu />
 				<ClientScreenContainer>
 					<h2>Cliente</h2>
-					<h3 ref={textDatasClient}>CLIENTE, você possui X cortes. Complete 6 para ganhar um de graça!</h3>
+					<h3 ref={textDatasClient}>Carregando...</h3>
 					<div className="stars">			
 					{
 					  amountCuts !== '' ? (

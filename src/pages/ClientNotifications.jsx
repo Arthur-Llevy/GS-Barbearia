@@ -1,15 +1,18 @@
 import { ClientMenu, Footer, Container, ClientNotification, ClientNotificationContainer } from '../components/Exports';
 import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
+import moment from 'moment'
 
 export function ClientNotifications(){
+
+	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Notificações';
 
 	let [notifications, setNotifications] = useState([]);
 
 	async function handleDeleteNotification(id){
 		if(window.confirm('Tem certeza que deseja excluir esta notificação?')){
-			fetch('https://gs-barbearia-api.onrender.com/cliente/excluirNotificacao', {
+			fetch(`${APIURL}/cliente/excluirNotificacao`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -24,7 +27,7 @@ export function ClientNotifications(){
 	};
 
 	useEffect(() => {
-	  fetch('https://gs-barbearia-api.onrender.com/cliente/notificacoes', {
+	  fetch(`${APIURL}/cliente/notificacoes`, {
 	    method: 'POST',
 	    headers: {
 	      'Content-Type': 'application/json',
@@ -33,13 +36,13 @@ export function ClientNotifications(){
 	  })
 	    .then(response => response.json())
 	    .then(data => {
-			if(data){	    	
-
-		      const notificationNames = data.map(item => {
+			if(data){	
+			    const notificationNames = data.map(item => {
 		      	return {
 		      		name: item.nome,
 		      		id: item.idCliente,
-		      		requestConfirm: item.solicitacaoAceita
+		      		requestConfirm: item.solicitacaoAceita,
+		      		time: `(${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`
 		      	}
 		      });
 		      setNotifications(notificationNames);	      
@@ -53,10 +56,18 @@ export function ClientNotifications(){
 			<Container>
 				<ClientMenu />
 				<ClientNotificationContainer>					
-				{
+				{notifications.length === 0 ? (
+						<p
+							style={{
+								color: '#eee',
+								fontWeight: 'bold',
+								fontSize: '20px'
+							}}
+						>Carregando notificações...</p>
+					) : 
 					notifications.map(item => (
 						<ClientNotification key={item}>
-							<p>Solicitação de corte</p>
+							<p>Solicitação de corte {item.time}</p>
 							{item.requestConfirm ? <BsCheck className="checked"/> : <BsCheck className="notChecked"/>}
 							<BsTrash3Fill onClick={() => handleDeleteNotification(item.id)}  className="trash-icon"/>
 						</ClientNotification>
