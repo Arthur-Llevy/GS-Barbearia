@@ -28,7 +28,7 @@ export function FindClient(){
 			<Container>
 				<Menu />
 				<FindClientContainer>
-					<h2>Adicionar Corte</h2>
+					<h2>Procurar cliente</h2>
 					<label>Id do cliente</label>
 					<input onInput={e => setId(e.target.value)} type="text" />				
 					<button onClick={handleFindClient}>Procucar cliente</button>

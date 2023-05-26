@@ -56,9 +56,22 @@ export function RegisterClient(){
 			}).
 				then(response => response.json()).
 				then(data => { 
-					alert(data.message);				
-				}).
-				catch(erro => console.log(`Erro: ${erro}`));			
+					alert(data.message);
+					fetch(`${APIURL}/login/cliente`, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							email: inputEmail.current.value,
+							senha: textInputPassword.current.value
+						})
+					}).then(response => response.json())
+						  .then(data => {
+						  		localStorage.setItem('token', data.token);
+						  		window.location.href = '/cliente';
+						  })
+						  .catch(() => alert('Falha ao entrar em sua conta. Tente novamente mais tarde.'))					
+				})
+				.catch(erro => console.log(`Erro: ${erro}`));			
 
 		}else if(inputName.current.value === '' || inputEmail.current.value === '' || inputEmail.current.value === '' || textInputPassword.current.value === '' || textInputConfirmPassword.current.value === ''){
 			alert('Todos os campos precisam ser preenchidos.');
