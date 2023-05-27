@@ -10,7 +10,7 @@ export function BarberNotifications(){
 	document.title = 'GSB | Notificações';
 	let [notifications, setNotifications] = useState([]);
 
-	async function handleConfirmCut(id){
+	async function handleConfirmCut(clientId, id){
 
 		if(window.confirm('Tem certeza que deseja confirmar o corte do cliente?')){
 			fetch(`${APIURL}/barbeiro/confirmarSolicitacao`, {
@@ -19,7 +19,7 @@ export function BarberNotifications(){
 					'Content-Type': 'application/json',
 					'token': localStorage.getItem('token')
 				},
-				body: JSON.stringify({id: id})
+				body: JSON.stringify({clientId: clientId, id: id})
 			}).
 				then(response => response.json()).
 				then(data => alert(data.message)).
@@ -54,13 +54,14 @@ export function BarberNotifications(){
 	  })
 	    .then(response => response.json())
 	    .then(data => {
-	    if(data){
+	    if(data){	    	
 	      const notificationNames = data.map(item => {
 	      	return {
 	      		name: item.nome,
-	      		id: item.idCliente,
+	      		clientId: item.idCliente,
 	      		requestConfirm: item.solicitacaoAceita,
-	      		time: ` (${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`
+	      		time: ` (${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`,
+	      		id: item.id
 	      	}
 	      });
 
@@ -85,9 +86,10 @@ export function BarberNotifications(){
 							}}
 						>Carregando notificações...</p>
 					) :
-					notifications.map(item => (
+					notifications.map(item =>
+						(
 						<BarberNotification key={item}>
-							<p onClick={() => handleConfirmCut(item.id)}>Solicitação de corte do cliente {item.name} {item.time}</p>
+							<p onClick={() => handleConfirmCut(item.clientId, item.id)}>Solicitação de corte do cliente {item.name} {item.time}</p>
 							{item.requestConfirm ? <BsCheck className="checked"/> : <BsCheck className="notChecked"/>}
 							<BsTrash3Fill onClick={() => handleDeleteNotification(item.id)} className="trash-icon"/>
 						</BarberNotification>

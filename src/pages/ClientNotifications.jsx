@@ -35,13 +35,14 @@ export function ClientNotifications(){
 	    }
 	  })
 	    .then(response => response.json())
-	    .then(data => {
+	    .then(data => {	    	
 			if(data){	
 			    const notificationNames = data.map(item => {
 		      	return {
 		      		name: item.nome,
-		      		id: item.idCliente,
+		      		clientId: item.idCliente,
 		      		requestConfirm: item.solicitacaoAceita,
+		      		id: item.id,
 		      		time: `(${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`
 		      	}
 		      });

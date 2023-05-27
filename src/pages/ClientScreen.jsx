@@ -15,7 +15,7 @@ export function ClientScreen(){
 	
 	useEffect(() => {
 
-		fetch(`${APIURL}/dadosCliente`, {
+		fetch(`http://localhost:5000/dadosCliente`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export function ClientScreen(){
 
 	async function addCut(){		
 		if(window.confirm('Tem certeza que deseja solicitar um corte?')){
-			fetch(`${APIURL}/cliente/solicitarCorte`, {
+			fetch(`http://localhost:5000/cliente/solicitarCorte`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
