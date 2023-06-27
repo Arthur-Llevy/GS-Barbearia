@@ -14,6 +14,7 @@ export * from '../pages/BarberNotifications';
 export * from '../pages/ClientNotifications';
 export * from '../components/ClientMenu';
 export * from '../components/BarberMenu';
+export * from '../pages/ForgotPassword';
 
 //Exports style sheets
 export * from '../styles/components/menu';
@@ -28,4 +29,5 @@ export * from '../styles/pages/findCLient';
 export * from '../styles/pages/clientScreen';
 export * from '../pages/BarberNotifications';
 export * from '../styles/pages/clientNotifications';
+export * from '../styles/pages/forgotPassword';
 

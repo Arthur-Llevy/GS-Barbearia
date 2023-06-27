@@ -3,14 +3,14 @@ import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import moment from 'moment'
 
-export function ClientNotifications(){
+export const ClientNotifications = () => {
 
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Notificações';
 
 	let [notifications, setNotifications] = useState([]);
 
-	async function handleDeleteNotification(id){
+	const handleDeleteNotification = async (id) => {
 		if(window.confirm('Tem certeza que deseja excluir esta notificação?')){
 			fetch(`${APIURL}/cliente/excluirNotificacao`, {
 				method: 'DELETE',
@@ -44,13 +44,13 @@ export function ClientNotifications(){
 		      		requestConfirm: item.solicitacaoAceita,
 		      		id: item.id,
 		      		time: `(${moment(item.createdAt).format('DD/MM')} às ${moment(item.createdAt).hour()}:${moment(item.createdAt).minute()})`
-		      	}
+		      	};
 		      });
 		      setNotifications(notificationNames);	      
 	  		};
 	    })
   		.catch(() => alert('Ocorreu um erro ao carregar as notificações, tente novamente mais tarde.'));
-}, []);
+});
 
 	return(
 		<>

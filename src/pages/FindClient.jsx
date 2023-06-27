@@ -1,13 +1,13 @@
 import { Menu, Footer, FindClientContainer, Container } from '../components/Exports';
 import { useState } from 'react';
 
-export function FindClient(){	
+export const FindClient = () => {	
 
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Procurar cliente';
 	let [id, setId] = useState('');
 
-	async function handleFindClient(){
+	const handleFindClient = async () => {
 		fetch(`${APIURL}/barbeiro/procurarCliente`, {
 			method: 'POST',
 			headers: {
@@ -15,12 +15,12 @@ export function FindClient(){
 				'token': localStorage.getItem('token')
 			},
 			body: JSON.stringify({id: id})
-		}).
-			then(response => response.json()).
-			then(data => {
-				alert(`Nome: ${data.name}, Id: ${data.id} e N° de cortes: ${data.cuts}`);
-			}).
-			catch(() => alert('Falha ao procurar o cliente, tente novamente mais tarde.'))
+		})
+		.then(response => response.json())
+		.then(data => {
+			alert(`Nome: ${data.name}, Id: ${data.id} e N° de cortes: ${data.cuts}`);
+		})
+		.catch(() => alert('Falha ao procurar o cliente, tente novamente mais tarde.'))
 	};
 
 	return(

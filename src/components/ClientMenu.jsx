@@ -1,21 +1,18 @@
 import logoMenu from '../images/logo_menu_icon.svg';
 import { ContainerMenu } from './Exports';
-import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
 import { BsBell } from 'react-icons/bs';
 import { RxExit } from 'react-icons/rx';
 
-export function ClientMenu(){
+export const ClientMenu = () => {
 
-	let visible = false;
 	let navigater = useNavigate();
 
-	function navigate(url){
+	const navigate = (url) => {
 		navigater(url)
 	};
 
-	function logout(){
+	const logout = () => {
 		localStorage.removeItem('token');
 		window.location.href = '/';
 	};

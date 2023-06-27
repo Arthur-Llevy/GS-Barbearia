@@ -1,27 +1,12 @@
 import logoMenu from '../images/logo_menu_icon.svg';
 import { ContainerMenu, PopUp } from './Exports';
-import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
-export function Menu(){
+export const Menu = () => {
 
 	let popUp = useRef();
-	let visible = false;
-
-	function toggle(){
-		if(!visible){
-			popUp.current.style.opacity = '1';
-			popUp.current.style.display = 'flex';
-			visible = true;
-		}else {
-			popUp.current.style.display = 'none';
-			popUp.current.style.opacity = '0';
-			visible = false;
-		};
-	};
-
-	function logout(){
+	
+	const logout = () => {
 		localStorage.removeItem('token');
 		window.location.href = '/';
 	}

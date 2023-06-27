@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BarberLoginContainer = styled.div`
+export const ForgotPasswordContainer = styled.div`
 	height: auto;
 	width: 90%;
 	background-color: #232323;
@@ -9,7 +9,6 @@ export const BarberLoginContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	transition: .2s;
 
 	h2 {
 	  color: #eee;
@@ -53,56 +52,8 @@ export const BarberLoginContainer = styled.div`
 		margin: 0 auto 20px auto;
 	}
 
-	& .loginWithGoogleButton {
-		height: 40px;
-		display: flex;
-		background-color: #eee;
-		border-radius: 10px;
-		border: 1px solid #eee;
-		font-size: 15px;
-		color: #1a1a1a;
-		transition: .2s;
-		font-weight: bold;
-		width: 90%;
-		margin: 0 auto 20px auto;
-		justify-content: center;
-		align-items: center;
-		gap: 20px;
-	}
-
-	& .loginWithGoogleButton > svg {
-		width: 25px;
-		height: 25px;
-	}
-
 	button:hover {
 		background-color: transparent;
 		color: #eee;
 	}
-
-	& > div {
-		height: auto;
-		position: relative;
-	}
-
-	& > .inputPass > .img{
-		position: absolute;
-		color: #eee;
-		top: 50%;
-		bottom: 50%;
-		transform: translateY(-50%);
-		left: 73vw;
-		width: 30px;
-		height: 30px;
-		cursor: pointer;
-	}
-
-	
-	& .or {
-  		color: #eee;
-  		text-align: center;
- 	 	font-weight: bold;
-	}
-
 `;
-

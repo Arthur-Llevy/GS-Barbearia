@@ -2,7 +2,7 @@ import { Footer, ClientMenu, ClientScreenContainer, Container } from '../compone
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
-export function ClientScreen(){	
+export const ClientScreen = () => {	
 	
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Dashboard';
@@ -14,33 +14,31 @@ export function ClientScreen(){
 	let restOfstars = [];
 	
 	useEffect(() => {
-
 		fetch(`${APIURL}/dadosCliente`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				'token': `${token}`
 			}
-		}).
-			then(response => response.json()).
-			then(data => {
-				if(data.cuts >= 6){
-					textDatasClient.current.innerHTML = `${data.name}, você já possui ${data.cuts} cortes, informe ao barbeiro para ganhar o próximo corte de graça.`;	
-					setAmountCuts(data.cuts);
-				}else {
-					textDatasClient.current.innerHTML = `${data.name}, você possui ${data.cuts} cortes, complete 6 para ganhar 1 corte de graça.`;	
-					setAmountCuts(data.cuts);
-				}
+		})
+		.then(response => response.json())
+		.then(data => {
+			if(data.cuts >= 6){
+				textDatasClient.current.innerHTML = `${data.name}, você já possui ${data.cuts} cortes, informe ao barbeiro para ganhar o próximo corte de graça.`;	
+				setAmountCuts(data.cuts);
+			}else {
+				textDatasClient.current.innerHTML = `${data.name}, você possui ${data.cuts} cortes, complete 6 para ganhar 1 corte de graça.`;	
+				setAmountCuts(data.cuts);
+			};
 
-			}).
-			catch(erro => {
-				alert('Erro ao procurar dados do cliente.');
-				window.location.href = '/loginCliente';
-			});
+		})
+		.catch(erro => {
+			alert('Erro ao procurar dados do cliente.');
+			window.location.href = '/loginCliente';
+		});
+	});
 
-	}, []);
-
-	async function addCut(){		
+	const addCut = async () => {		
 		if(window.confirm('Tem certeza que deseja solicitar um corte?')){
 			fetch(`${APIURL}/cliente/solicitarCorte`, {
 				method: 'POST',
@@ -48,16 +46,16 @@ export function ClientScreen(){
 					'Content-Type': 'application/json',
 					'token': localStorage.getItem('token')
 				}
-			}).
-				then(response => response.json()).
-				then(data => {
-					alert(data.message);
-				}).
-				catch(() => alert('Falha ao adicionar corte ao cliente.'))		
+			})
+			.then(response => response.json())
+			.then(data => {
+				alert(data.message);
+			})
+			.catch(() => alert('Falha ao adicionar corte ao cliente.'))		
 		};
 	};
 
-	function renderStars() {  
+	const renderStars = () => {  
 		for (let i = 0; i < amountCuts; i++) {	  	
 			if(stars.length > 6){
 				break
@@ -69,7 +67,7 @@ export function ClientScreen(){
 		return stars;
 	};
 
-	function completeStars(){			
+	const completeStars = () => {			
 			for(let i = 0; i < 6 - stars.length; i++){
 				restOfstars.push(<FaStar className="star-icon" key={i} color="gray" />);
 			}

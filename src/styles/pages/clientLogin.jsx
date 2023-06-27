@@ -38,6 +38,13 @@ export const ClientLoginContainer = styled.div`
 	  outline: #2e2eff 2px solid;
 	}
 
+	& .forgotPasswordParagraph {
+		text-decoration: underline;
+		cursor: pointer;
+		text-align: center;
+		color: #eee
+	}
+
 	button {
 		height: 40px;
 		display: block;
@@ -52,7 +59,7 @@ export const ClientLoginContainer = styled.div`
 		margin: 0 auto 20px auto;
 	}
 
-	& button:last-child {
+	& .loginWithGoogleButton {
 		height: 40px;
 		display: flex;
 		background-color: #eee;
@@ -69,7 +76,7 @@ export const ClientLoginContainer = styled.div`
 		gap: 20px;
 	}
 
-	& button:last-child > svg {
+	& .loginWithGoogleButton > svg {
 		width: 25px;
 		height: 25px;
 	}
@@ -101,5 +108,4 @@ export const ClientLoginContainer = styled.div`
   		text-align: center;
  	 	font-weight: bold;
 	}
-
 `;

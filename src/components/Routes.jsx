@@ -9,13 +9,14 @@ import {
 	FindClient,
 	ClientScreen,
 	BarberNotifications,
-	ClientNotifications
-	 } from './Exports';
+	ClientNotifications,
+	ForgotPassword
+	} from './Exports';
 import React from 'react';
 
-export function Rts(){
+export const Rts = () => {
 
-	const token = localStorage.getItem('token');	
+	const token = localStorage.getItem('token');		
 
 	return(
 		<BrowserRouter>
@@ -30,6 +31,7 @@ export function Rts(){
 				<Route path="cliente" element={token !== null ? <ClientScreen /> : <Navigate to="/loginCliente" />}/>
 				<Route path="/barbeiro/notificacoes" element={token !== null ? <BarberNotifications /> : <Navigate to="/loginBarbeiro" />} />
 				<Route path="/cliente/notificacoes" element={token !== null ? <ClientNotifications /> : <Navigate to="/loginCliente" />} />
+				<Route path="/cliente/esqueceuSenha" element={<ForgotPassword />} />
 			</Routes>
 		</BrowserRouter>
 	);	

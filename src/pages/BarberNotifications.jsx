@@ -4,13 +4,13 @@ import { BsCheck, BsTrash3Fill } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-export function BarberNotifications(){
+export const BarberNotifications = () => {
 
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Notificações';
 	let [notifications, setNotifications] = useState([]);
 
-	async function handleConfirmCut(clientId, id){
+	const handleConfirmCut = async (clientId, id) => {
 
 		if(window.confirm('Tem certeza que deseja confirmar o corte do cliente?')){
 			fetch(`${APIURL}/barbeiro/confirmarSolicitacao`, {
@@ -20,15 +20,14 @@ export function BarberNotifications(){
 					'token': localStorage.getItem('token')
 				},
 				body: JSON.stringify({clientId: clientId, id: id})
-			}).
-				then(response => response.json()).
-				then(data => alert(data.message)).
-				catch(() => alert('Falha ao confirmar o corte. Tente novamente mais tarde.'))
+			})
+			.then(response => response.json())
+			.then(data => alert(data.message))
+			.catch(() => alert('Falha ao confirmar o corte. Tente novamente mais tarde.'));
 		};
-
 	};
 
-	async function handleDeleteNotification(id){
+	const handleDeleteNotification = async (id) => {
 		if(window.confirm('Tem certeza que deseja excluir esta notificação?')){
 			fetch(`${APIURL}/barbeiro/excluirNotificacao`, {
 				method: 'DELETE',
@@ -37,11 +36,11 @@ export function BarberNotifications(){
 					'token': localStorage.getItem('token')
 				},
 				body: JSON.stringify({id: id})
-			}).
-				then(response => response.json()).
-				then(data => alert(data.message)).
-				catch(() => alert('Falha ao excluir a notificação. Tente novamente mais tarde.'))
-		}
+			})
+			.then(response => response.json())
+			.then(data => alert(data.message))
+			.catch(() => alert('Falha ao excluir a notificação. Tente novamente mais tarde.'))
+		};
 	};
 
 	useEffect(() => {
@@ -64,12 +63,11 @@ export function BarberNotifications(){
 	      		id: item.id
 	      	}
 	      });
-
 	      setNotifications(notificationNames);	      
 	     }
 	    })
   		.catch(() => alert('Ocorreu um erro ao carregar as notificações, tente novamente mais tarde.'));
-}, []);	
+});	
 
 	return(
 		<>

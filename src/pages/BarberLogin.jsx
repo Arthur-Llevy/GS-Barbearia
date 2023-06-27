@@ -1,14 +1,13 @@
 import { Menu, Footer, Container } from '../components/Exports';
 import { BarberLoginContainer } from '../styles/pages/barberLogin';
 import { firebaseVariables } from '../services/FirebaseConfig';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { initializeApp } from "firebase/app";
+import { signInWithPopup } from "firebase/auth";
 import { FcGoogle } from 'react-icons/fc';
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useState, useRef } from 'react';
 
-export function BarberLogin(){
+export const BarberLogin = () => {
 
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Login';
@@ -18,33 +17,32 @@ export function BarberLogin(){
 	let textInputEmail = useRef();
 	let container = useRef();
 
-	async function handleLogin(){
+	const handleLogin = async () => {
 		fetch(`${APIURL}/loginBarbeiro`, {
 			method: 'POST',
 			body: JSON.stringify({
 				email: textInputEmail.current.value,
 				senha: textInputPassword.current.value
 			}),
-
 			headers: { 
 				'Content-Type': 'application/json',				
 			}
-		}).
-			then(response => response.json()).
-			then(data => {
-				if('token' in data){
-					localStorage.setItem('token', data.token);            
-					window.location.href = '/barbeiro';
-				}else {
-					alert(data.message);
-				}
-			}).
-			catch(erro => {
-				alert('Ocorreu um erro ao fazer login.');
-			});
+		})
+		.then(response => response.json())
+		.then(data => {
+			if('token' in data){
+				localStorage.setItem('token', data.token);            
+				window.location.href = '/barbeiro';
+			}else {
+				alert(data.message);
+			};
+		})
+		.catch(erro => {
+			alert('Ocorreu um erro ao fazer login.');
+		});
 	};
 
-	function changePasswordVisibility(){
+	const changePasswordVisibility = () => {
 		if(passwordVisible){
 			textInputPassword.current.setAttribute('type', 'password');
 			setPasswordVisible(false);
@@ -54,7 +52,7 @@ export function BarberLogin(){
 		};
 	};
 
-	async function loginWithGoogle(){		
+	const loginWithGoogle = async () => {		
 		signInWithPopup(firebaseVariables.auth, firebaseVariables.provider)
 		      .then((result) => {		      	
 				fetch(`${APIURL}/googleLogin/barbeiro`, {
@@ -70,13 +68,12 @@ export function BarberLogin(){
 							window.location.href = '/barbeiro';
 						}else {
 							alert(data.message);
-						}
-					}).
-					catch(() => alert('Ocorreu um erro ao tentar entrar com uma conta do Google. Tente novamente mais tarde.'))
+						};
+					})
+					.catch(() => alert('Ocorreu um erro ao tentar entrar com uma conta do Google. Tente novamente mais tarde.'))
 		}).catch(() => {
-		        alert('Falha ao fazer login com uma conta Google. Tente novamente mais tarde.');
-		}); 				
-
+		    alert('Falha ao fazer login com uma conta Google. Tente novamente mais tarde.');
+		}); 	
 	};
 
 	return(
@@ -84,7 +81,12 @@ export function BarberLogin(){
 			<Container>
 				<Menu />
 				<BarberLoginContainer ref={container}>
-					<h2>Barbeiro</h2>
+					<h2>Barbeiro - Login</h2>
+					<button className="loginWithGoogleButton" onClick={loginWithGoogle}>
+						<FcGoogle />
+						Entrar com o google
+					</button>
+					<p className="or">Ou</p>
 					<label>E-mail</label>
 					<input ref={textInputEmail} type="text" />
 					<label>Senha</label>
@@ -97,12 +99,7 @@ export function BarberLogin(){
 							className='img'
 							onClick={ changePasswordVisibility}/>}								
 					</div>
-					<button onClick={handleLogin}>Entrar</button>
-					<p className="or">Ou</p>
-					<button onClick={loginWithGoogle}>
-						<FcGoogle />
-						Entrar com o google
-					</button>
+					<button className="loginButton" onClick={handleLogin}>Entrar</button>
 				</BarberLoginContainer>			
 				<Footer />
 			</Container>

@@ -2,12 +2,12 @@ import React from 'react';
 import { Menu, Footer, Container, HomePageContainer} from '../components/Exports';
 import { useNavigate } from 'react-router-dom';
 
-export function HomePage(){
+export const HomePage = () => {
 	
 	document.title = 'GSB | Página inicial';
 	let navigater = useNavigate();
 
-	function navigate(url){
+	const navigate = (url) => {
 		navigater(url)
 	};
 

@@ -1,6 +1,6 @@
 import { FooterContainer } from '../components/Exports'
 
-export function Footer(){
+export const Footer = () => {
 	return(
 		<>
 			<FooterContainer>

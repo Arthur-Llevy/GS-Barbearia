@@ -2,7 +2,7 @@ import { Menu, Footer } from '../components/Exports';
 import { AddCutToClientContainer, Container } from '../components/Exports';
 import { useRef } from 'react';
 
-export function AddCutToClient(){	
+export const AddCutToClient = () => {	
 
 	const APIURL = process.env.REACT_APP_API_URL;
 	document.title = 'GSB | Adicionar corte';
@@ -10,7 +10,7 @@ export function AddCutToClient(){
 	let container = useRef();
 	let textInputId = useRef();	
 
-	async function confirm(){
+	const confirm = async () => {
 
 		fetch(`${APIURL}/barbeiro/procurarCliente`, {
 			method: 'POST',
@@ -18,18 +18,17 @@ export function AddCutToClient(){
 			  'Content-Type': 'application/json',
 			  'token': localStorage.getItem('token')
 			},
-
 			body: JSON.stringify({id: textInputId.current.value})
-		}).
-			then(response => response.json()).
-			then(data => {								
-				if(window.confirm(`Tem certeza que deseja adicionar um corte ao cliente ${data.name} ?`)){
-					handleAddCut()
-				}
-			})
-	}
+		})
+		.then(response => response.json())
+		.then(data => {								
+			if(window.confirm(`Tem certeza que deseja adicionar um corte ao cliente ${data.name} ?`)){
+				handleAddCut()
+			};
+		});
+	};
 
-	async function handleAddCut(){
+	const handleAddCut = async () => {
 		fetch(`${APIURL}/barbeiro/adicionarCorte`, {
 			method: 'PATCH',
 			headers: {
@@ -37,12 +36,12 @@ export function AddCutToClient(){
 				'token': localStorage.getItem('token')
 			},
 			body: JSON.stringify({id: textInputId.current.value})
-		}).
-			then(response => response.json()).
-			then((data) => {
-				alert(data.message)
-			})
-	}
+		})
+		.then(response => response.json())
+		.then((data) => {
+			alert(data.message)
+		});
+	};
 
 	return(
 		<>

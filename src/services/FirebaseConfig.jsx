@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -19,13 +19,4 @@ export const firebaseVariables = {
   app, 
   auth,
   provider
-};
-const loginWithGoogle = async () => {
-  signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result._tokenResponse.email);
-        console.log(result._tokenResponse);
-    }).catch(() => {
-        alert('Falha ao fazer login com uma conta Google. Tente novamente mais tarde.');
-    }); 
 };
